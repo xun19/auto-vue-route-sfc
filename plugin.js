@@ -13,14 +13,21 @@ const plugin = () => {
         visitor: {
             Program(path) {
                 const start = path.get('body')[0]
-                const newNode = template.statement.ast`const ${importWrapperFuncName} = require('${packageName}')`
+                const newNode = template.statement.ast(`const ${importWrapperFuncName} = require('${packageName}')`)
                 start.insertBefore(newNode)
             },
             ImportDeclaration(path) {
                 const { node } = path
-                const specifiers = node.specifiers[0].local.name
+                const specifiers = node.specifiers
                 const source = node.source.value
-                const newNode = template.statement.ast`const ${specifiers} = ${importWrapperFuncName}(__dirname, '${source}')`
+                let newNode = ''
+                if (specifiers.length === 1) { // import default
+                    const specifierName = node.specifiers[0].local.name
+                    newNode = template.statement.ast(`const ${specifierName} = ${importWrapperFuncName}(__dirname, '${source}')`)
+                } else { // 存在解构
+                    const specifierNames = node.specifiers.map(item => item.local.name)
+                    newNode = template.statement.ast(`const {${specifierNames}} = ${importWrapperFuncName}(__dirname, '${source}')`)
+                }
                 path.replaceWith(newNode)
             },
             CallExpression(path) {
@@ -30,7 +37,7 @@ const plugin = () => {
                     if (!parent || parent.node.id.name !== importWrapperFuncName) {
                         const argument = node.arguments[0]
                         const argumentCode = generate(argument).code
-                        const newNode = template.statement.ast`${importWrapperFuncName}(__dirname, ${argumentCode})`
+                        const newNode = template.statement.ast(`${importWrapperFuncName}(__dirname, ${argumentCode})`)
                         path.replaceWith(newNode)
                     }
                 }
@@ -43,7 +50,7 @@ const plugin = () => {
                         src = replaceAlias(src)
                         const protocol = isLowNodejsVersion ? '' : 'file://' // 高版本nodejs要求import()本地文件必须是file协议 TODO: file协议只对windows有用, 如何适配Mac
                         src = protocol + src
-                        const newNode = template.statement.ast`import('${src}')`
+                        const newNode = template.statement.ast(`import('${src}')`)
                         path.replaceWith(newNode)
                     }
                 }
