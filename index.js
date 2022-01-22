@@ -6,8 +6,7 @@ const _import = (dirname, src) => {
     try {
         const s = isPackageName(src) ? src : path.resolve(dirname, replaceAlias(src))
         const module = require(s)
-        // return module.default || module
-        return module
+        return module.default || module
     } catch(e) {
         // 只针对找不到.vue文件的情形进行处理。若不是，则将报错传递出来
         // 正常情况的其它模块的require都已经被正确加载。无法加载的其它模块，将被正常报错处理，无法进行文件创建

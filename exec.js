@@ -1,9 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
-const { isLowNodejsVersion, developerProjectDir, getTmpDir } = require('./utils')
+const { packageName, isLowNodejsVersion, developerProjectDir, getTmpDir } = require('./utils')
 
-const configs = require(path.resolve(developerProjectDir, './auto-vue-route-view.config.js'))
+const configs = require(path.resolve(developerProjectDir, `./${packageName}.config.js`))
 
 const routerDir = configs.routerDir || './src/router'
 const tmpRouterDir = getTmpDir(routerDir)

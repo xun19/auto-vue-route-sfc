@@ -1,7 +1,7 @@
 {
   "name": "auto-vue-route-sfc",
-  "version": "0.0.1-alpha",
-  "description": "",
+  "version": "0.0.5-alpha",
+  "description": "Create the pages dir and .vue file (SFC) by your routes Array.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,7 @@
   "author": "xun19",
   "license": "ISC",
   "bin": {
-    "auto-vue-route-view": "./bin/index.js"
+    "auto-vue-route-sfc": "./bin/index.js"
   },
   "dependencies": {
     "@babel/cli": "^7.16.8",

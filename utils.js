@@ -1,7 +1,7 @@
 const process = require('process')
 const path = require('path')
 
-const packageName = 'auto-vue-route-view'
+const packageName = 'auto-vue-route-sfc'
 
 const isPackageName = (dir) => !!/^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.exec(dir)
 
