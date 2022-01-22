@@ -1,0 +1,43 @@
+{
+  "name": "auto-vue-route-sfc",
+  "version": "0.0.1-alpha",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xun19",
+  "license": "ISC",
+  "bin": {
+    "auto-vue-route-view": "./bin/index.js"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "@babel/generator": "^7.16.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/template": "^7.16.7",
+    "@types/babel__core": "^7.1.18",
+    "babel-plugin-transform-dirname-filename": "^1.1.0",
+    "esno": "^0.13.0",
+    "mkdirp": "^1.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xun19/auto-vue-route-sfc"
+  },
+  "keywords": [
+    "vue",
+    "vue-router",
+    "router",
+    "component",
+    ".vue",
+    "sfc",
+    "front-end",
+    "front end",
+    "auto",
+    "automation"
+  ]
+}
