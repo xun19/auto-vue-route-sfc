@@ -1,6 +1,6 @@
 {
   "name": "auto-vue-route-sfc",
-  "version": "0.0.10-alpha",
+  "version": "0.0.12-alpha",
   "description": "Create the pages dir and .vue file (SFC) by your routes Array.",
   "main": "index.js",
   "scripts": {

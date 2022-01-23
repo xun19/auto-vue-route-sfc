@@ -106,7 +106,7 @@ Generally, we need to manually create the directory and .vue file, but in the ca
 
 Now that we're already in router.routes defines the directory location and naming of these components. In fact, this information can be directly used to automatically create directories and files. This tool is used to complete this work.
 
-##Support
+## Support
 
 - It is currently used under vue-router4 and will be compatible with vue-router3 in the future
 
@@ -131,7 +131,7 @@ Create file named auto-vue-route-sfc.config.js in the root directory of your pro
 
 ```javascript
 module. exports = {
-  entry: './src/router/index. js',
+  entry: './src/router/index.js',
   routerDir: './src/router'
 }
 ```
@@ -156,7 +156,7 @@ npx auto-vue-route-sfc
 
 #### Method II
 
-Alternatively, you can use the project package Configuring script commands in JSON
+Alternatively, you can use the project package.json script command
 
 ```javascript
 // package.json
@@ -182,7 +182,7 @@ Support the use of path aliases, which can be found in auto-vue-route-sfc.config
 
 ```javascript
 module. exports = {
-  entry: './src/router/index. js',
+  entry: './src/router/index.js',
   routerDir: './src/router',
   // use alias
   alias: {
