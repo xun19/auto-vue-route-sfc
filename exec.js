@@ -73,12 +73,12 @@ function init(routes) {
     }
     // 若存在fs.rm，优先使用fs.rm: “In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead”
     const rmdir = fs.rm || fs.rmdir
-    // rmdir(path.resolve(developerProjectDir, tmpRouterDir), {
-    //     recursive: true,
-    //     force: true
-    // } , () => {
-    //     console.log('\033[33m\n创建完成\033[39m')
-    // })
+    rmdir(path.resolve(developerProjectDir, tmpRouterDir), {
+        recursive: true,
+        force: true
+    } , () => {
+        console.log('\033[33m\n创建完成\033[39m')
+    })
 }
 
 init(routes)
