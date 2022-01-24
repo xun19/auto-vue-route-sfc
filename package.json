@@ -1,13 +1,13 @@
 {
   "name": "auto-vue-route-sfc",
-  "version": "0.0.12-alpha",
-  "description": "Create the pages dir and .vue file (SFC) by your routes Array.",
+  "version": "0.0.14-alpha",
+  "description": "Create page directories and .vue files (vue single file component / SFC) based your export router.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "xun19",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "auto-vue-route-sfc": "./bin/index.js"
   },
@@ -29,6 +29,12 @@
     "url": "https://github.com/xun19/auto-vue-route-sfc"
   },
   "keywords": [
+    "auto vue-router",
+    "auto router",
+    "auto route",
+    "auto sfc",
+    "auto dir",
+    "auto component",
     "vue",
     "vue-router",
     "router",

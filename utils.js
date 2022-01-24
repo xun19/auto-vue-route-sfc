@@ -12,12 +12,20 @@ const isLowNodejsVersion = nodeVersion < 14 // 大版本小于14的认为是低�
 
 const developerProjectDir = path.resolve(__dirname, '../..')
 
-const configs = require(path.resolve(developerProjectDir, `./${packageName}.config.js`)) // .config.js的配置项
+let configs = {
+    entry: './src/router/index.js',
+    routerDir: './src/router',
+    alias: {}
+}
+try {
+    const devConfigs = require(path.resolve(developerProjectDir, `./${packageName}.config.js`)) // .config.js的配置项
+    configs = Object.assign(configs, devConfigs)
+} catch(e) {}
 
 const { alias } = configs
 const aliaFlags = Object.keys(alias)
 const isIllegalAlia = !!aliaFlags.find(aliaFlag => (aliaFlag.includes('.') || aliaFlag.includes('/')))
-const hasAliaFlag = (dir) => aliaFlags.find(aliaFlag => aliaFlag === dir.split('/')[0])
+const hasAliaFlag = (dir) => aliaFlags.find(aliaFlag => aliaFlag === dir.replace(/'/g, '').split('/')[0])
 const replaceAlias = (dirWithAlia) => {
     let dir = dirWithAlia
     let aliaFlag = hasAliaFlag(dir)

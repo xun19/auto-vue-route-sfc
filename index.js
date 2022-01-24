@@ -1,4 +1,5 @@
 const path = require('path')
+const VueRouter = require('vue-router')
 
 const { isPackageName, replaceAlias } = require('./utils')
 
@@ -22,16 +23,17 @@ const _import = (dirname, src) => {
     }
 }
 
-// TODO: 兼容vue-router3 的 new VueRouter()创建方式. 在config.js里让开发者说明
-const vueRouterFake = new Proxy({}, {
-    get(target, propertyKey) {
-        if (propertyKey === 'createRouter') {
-            return (opt) => opt.routes || [] 
-        } else  {
-            return () => null
-        }
-    }
-})
+const vueRouterFake = VueRouter.createRouter ? new Proxy({}, {
+      get(target, propertyKey) {
+          if (propertyKey === 'createRouter') {
+              return (opt) => opt.routes || []
+          } else  {
+              return () => null
+          }
+      }
+  }) : function R(opt) {
+    return opt.routes || []
+  }
 
 module.exports = {
     _import,

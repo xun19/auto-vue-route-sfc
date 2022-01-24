@@ -1,9 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
-const { packageName, isLowNodejsVersion, developerProjectDir, getTmpDir } = require('./utils')
-
-const configs = require(path.resolve(developerProjectDir, `./${packageName}.config.js`))
+const { configs, isLowNodejsVersion, developerProjectDir, getTmpDir } = require('./utils')
 
 const routerDir = configs.routerDir || './src/router'
 const tmpRouterDir = getTmpDir(routerDir)
@@ -16,18 +14,22 @@ if (routes.default) {
 const getRequireStack = e => e.stack.split('\n')[2].replace('- ', '')
 
 function createRouteDir(src, routePath) {
-    console.log('\033[33m创建Route SFC: \033[39m' + src)
+    try { // 判断文件是否已存在
+        fs.accessSync(src)
+    } catch (e) {
+        console.log('\033[33m创建Route SFC: \033[39m' + src)
 
-    const dir = path.dirname(src)
-    mkdirp.sync(dir)
-    const content =
+        const dir = path.dirname(src)
+        mkdirp.sync(dir)
+        const content =
 `<template>
     <div>
         ${routePath.includes('/') ? '' : '/'}${routePath}<router-view/>
     </div>
 </template>
 `
-    fs.writeFileSync(src, content)
+        fs.writeFileSync(src, content)
+    }
 }
 
 function init(routes) {
